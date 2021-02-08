@@ -1,0 +1,10 @@
+input_file:
+  class: File
+  path: _INPUT_FASTA_
+database_name: _DATABASE_NAME_
+molecule_type: _DBTYPE_
+results_path:
+  class: Directory
+  path: ./data
+ModulesToLoad:
+  module1: ncbi-blast

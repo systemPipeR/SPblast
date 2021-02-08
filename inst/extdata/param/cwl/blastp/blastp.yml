@@ -1,0 +1,16 @@
+query:
+  class: File
+  path: _INPUT_FASTA_
+database_name:
+  class: File
+  path: _DATABASE_NAME_
+evalue: _evalue_
+outfmt: _outfmt_
+out:
+  class: File
+  path: _OUTPUT_
+results_path:
+  class: Directory
+  path: ./results
+ModulesToLoad:
+  module1: ncbi-blast
