@@ -1,4 +1,4 @@
-# systemPipeRBLAST 
+# systemPipeBLAST 
 
 ### Introduction
 
