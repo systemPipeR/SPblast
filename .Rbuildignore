@@ -1,0 +1,6 @@
+^README\.Rmd$
+^logs\.sh$
+^_pkgdown\.yml$
+^vignettes/skeleton\.sh$
+
+

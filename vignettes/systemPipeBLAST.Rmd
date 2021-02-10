@@ -124,7 +124,8 @@ R.utils::gunzip("data/human.1.protein.faa.gz")
 ```{r subset_data, eval=FALSE}
 library(Biostrings)
 mouse.path <- system.file("extdata", "data/mouse.1.protein.faa", package="systemPipeBLAST")
-select <- readAAStringSet("mouse.path")
+mouse.path <- "data/mouse.1.protein.faa"
+select <- readAAStringSet(mouse.path)
 select <- select[1:3]
 writeXStringSet(select, "data/mouse_select.fasta", format="fasta")
 ```

@@ -41,3 +41,6 @@ vignettes/*.pdf
 vignettes/*_cache/*
 vignettes/*.html
 docs/articles/systemPipeBLAST_files/*
+
+vignettes/skeleton.sh
+
