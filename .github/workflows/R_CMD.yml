@@ -72,7 +72,7 @@ jobs:
         run: |
           remotes::install_deps(dependencies = TRUE)
           remotes::install_cran("rcmdcheck")
-          install.packages(c("BiocManager"))
+          install.packages(c("BiocManager", "knitcitations"))
           BiocManager::install("systemPipeR")
         shell: Rscript {0}
       - name: Check
