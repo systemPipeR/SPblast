@@ -1,5 +1,9 @@
 # systemPipeBLAST 
 
+<!-- badges: start -->
+![R-CMD-check](https://github.com/systemPipeR/systemPipeBLAST/workflows/R-CMD-check/badge.svg)
+<!-- badges: end -->
+
 ### Introduction
 
 

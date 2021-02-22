@@ -9,19 +9,19 @@ authors:
 
 home:
   links:
-  - text: Download from Bioconductor
+  - text: Download `systemPipeR` from Bioconductor
     href: http://www.bioconductor.org/packages/release/bioc/html/systemPipeR.html
   - text: Ask a question about systemPipeR
     href: https://support.bioconductor.org/
   - text: Report a bug
-    href: https://github.com/tgirke/systemPipeR/issues
+    href: https://github.com/systemPipeR/systemPipeBLAST/issues
 
 template:
   params:
-    docsearch:
+#    docsearch:
 #      api_key: 
 #      index_name: 
-       bootswatch: flatly
+    bootswatch: flatly
     ganalytics: UA-xxxx
 
 navbar:

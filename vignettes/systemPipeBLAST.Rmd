@@ -47,11 +47,20 @@ suppressPackageStartupMessages({
 
 # Introduction
 
+The [Basic Local Alignment Search Tool (BLAST)](https://blast.ncbi.nlm.nih.gov/Blast.cgi) finds regions of local similarity between sequences. 
+
+| BLAST Tool | Query Type | Database Type | Description                                                 |
+|------------|------------|---------------|-------------------------------------------------------------|
+| `blastn`     | Nucleotide | Nucleotide    | Search a nucleotide database using a nucleotide query       |
+| `blastx`     | Nucleotide | Protein       | Search protein database using a translated nucleotide query |
+| `tblastn`    | Protein    | Nucleotide    | Search translated nucleotide database using a protein query |
+| `blastp`     | Protein    | Protein       | Search protein database using a protein query               |
+
 ## Experimental design
 
 Typically, users want to specify here all information relevant for the analysis
 of their NGS study. This includes detailed descriptions of FASTQ files,
-experimental design, reference genome, gene annotations, etc.  
+experimental design, reference genome, gene annotations, etc. 
 
 # Workflow environment
 
@@ -266,8 +275,6 @@ output(WF)
 runCommandline(WF, make_bam = FALSE)
 ```
 
-
-
 # Version Information
 
 ```{r sessionInfo}
@@ -275,8 +282,7 @@ sessionInfo()
 ```
 
 # Funding
-This research was funded by National Science Foundation Grants IOS-0750811 and
-MCB-1021969, and a Marie Curie European Economic Community Fellowship
-PIOF-GA-2012-327954.
+
+This project is funded by NSF award ABI-1661152.
 
 # References
