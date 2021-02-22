@@ -7,7 +7,7 @@ Authors@R: c(
     person(given = "Thomas", family = "Girke", role = c("aut")))
 Description: This package provides a pre-configured workflow and reporting template for BLAST analysis.
 biocViews: Genetics, Infrastructure, DataImport, Sequencing, RNASeq, RiboSeq, ChIPSeq, MethylSeq, SNP, GeneExpression, Coverage, GeneSetEnrichment, Alignment, QualityControl, ImmunoOncology
-Imports: systemPipeR (>= 1.24.0), systemPipeRdata (>= 1.18.0)
+Imports: systemPipeR, systemPipeRdata
 Suggests: BiocStyle, knitr, rmarkdown
 VignetteBuilder: knitr
 SystemRequirements: systemPipeBLAST can be used to run external 
