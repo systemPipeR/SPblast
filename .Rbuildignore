@@ -1,6 +1,6 @@
-^README\.Rmd$
-^logs\.sh$
-^_pkgdown\.yml$
-^vignettes/skeleton\.sh$
-
+^SPblast\.Rproj$
+^\.Rproj\.user$
+inst/rmarkdown/templates/SPblast/skeleton/.batchtools.conf.R
+^\.github
+docs
 

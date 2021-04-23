@@ -1,10 +1,10 @@
-pandoc: 2.11.2
+pandoc: '2.13'
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
-  systemPipeBLAST: systemPipeBLAST.html
-last_built: 2021-02-22T16:39Z
+  SPblast: SPblast.html
+last_built: 2021-04-23T17:12Z
 urls:
-  reference: https://systempipe.org/systemPipeBLAST//reference
-  article: https://systempipe.org/systemPipeBLAST//articles
+  reference: https://systempipe.org/SPblast//reference
+  article: https://systempipe.org/SPblast//articles
 

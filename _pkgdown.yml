@@ -1,38 +1,20 @@
-title: systemPipeBLAST
-url: https://systempipe.org/systemPipeBLAST/
-
+title: SPblast
+url: https://systempipe.org/SPblast/
 authors:
    Daniela Cassol:
      href: https://www.dcassol.com/
    Thomas Girke:
      href: http://girke.bioinformatics.ucr.edu/
-
 home:
   links:
-  - text: Download `systemPipeR` from Bioconductor
-    href: http://www.bioconductor.org/packages/release/bioc/html/systemPipeR.html
-  - text: Ask a question about systemPipeR
-    href: https://support.bioconductor.org/
+  - text: Download from Github
+    href: https://github.com/systemPipeR/SPblast/
   - text: Report a bug
-    href: https://github.com/systemPipeR/systemPipeBLAST/issues
-
+    href: https://github.com/systemPipeR/SPblast/issues
 template:
   params:
-#    docsearch:
-#      api_key: 
-#      index_name: 
+    ganalytics: G-CCMXLYXWYV
     bootswatch: flatly
-    ganalytics: UA-xxxx
-
-navbar:
-  title: "systemPipeBLAST"
-  left:
-    - icon: fas fa-home fa-lg
-      href: index.html
-    - text: "Workflow"
-      href: articles/systemPipeBLAST.html
-      icon: fas fa-book
-  right:
-    - icon: fa-github fa-lg
-      href: https://github.com/systemPipeR/systemPipeBLAST
-
+#    docsearch:
+#      api_key: API_KEY
+#      index_name: INDEX_NAME
