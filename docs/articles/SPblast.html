@@ -25,6 +25,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -37,18 +39,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">SPblast</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.99.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../articles/SPblast.html">Get started</a>
 </li>
@@ -58,7 +54,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/systemPipeR/SPblast/">
+  <a href="https://github.com/systemPipeR/SPblast/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -73,48 +69,27 @@
 
       
 
-      </header><script src="SPblast_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
+      </header><script src="SPblast_files/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="SPblast_files/vizjs-2.1.2/plotwf.css" rel="stylesheet">
+<script src="SPblast_files/vizjs-2.1.2/viz.js"></script><script src="SPblast_files/vizjs-2.1.2/full.render.js"></script><script src="SPblast_files/dom_to_image-2.6/dom_to_image.js"></script><link id="plotwf_legend-1-attachment" rel="attachment" href="SPblast_files/plotwf_legend-1/plotwf_legend.svg">
+<script src="SPblast_files/plotwf-binding-2.1.9/plotwf.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>BLAST Workflow Template</h1>
-                        <h4 class="author">Author: Daniela Cassol (<a href="mailto:danielac@ucr.edu" class="email">danielac@ucr.edu</a>) and Thomas Girke (<a href="mailto:thomas.girke@ucr.edu" class="email">thomas.girke@ucr.edu</a>)</h4>
+                        <h4 data-toc-skip class="author">Author: Daniela Cassol (<a href="mailto:danielac@ucr.edu" class="email">danielac@ucr.edu</a>) and Thomas Girke (<a href="mailto:thomas.girke@ucr.edu" class="email">thomas.girke@ucr.edu</a>)</h4>
             
-            <h4 class="date">Last update: 23 April, 2021</h4>
+            <h4 data-toc-skip class="date">Last update: 06 December, 2021</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/systemPipeR/SPblast/blob/master/vignettes/SPblast.Rmd"><code>vignettes/SPblast.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/systemPipeR/SPblast/blob/HEAD/vignettes/SPblast.Rmd" class="external-link"><code>vignettes/SPblast.Rmd</code></a></small>
       <div class="hidden name"><code>SPblast.Rmd</code></div>
 
     </div>
 
     
     
-<!--
-- Compile from command-line
-Rscript -e "rmarkdown::render('SPblast.Rmd', c('BiocStyle::html_document'), clean=TRUE)"
--->
-<style type="text/css">
-pre code {
-white-space: pre !important;
-overflow-x: scroll !important;
-word-break: keep-all !important;
-word-wrap: initial !important;
-}
-</style>
-<script type="text/javascript">
-document.addEventListener("DOMContentLoaded", function() {
-  document.querySelector("h1").className = "title";
-});
-</script><script type="text/javascript">
-document.addEventListener("DOMContentLoaded", function() {
-  var links = document.links;  
-  for (var i = 0, linksLength = links.length; i < linksLength; i++)
-    if (links[i].hostname != window.location.hostname)
-      links[i].target = '_blank';
-});
-</script><div id="introduction" class="section level1">
-<h1 class="hasAnchor">
-<a href="#introduction" class="anchor"></a>Introduction</h1>
-<p>The <a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">Basic Local Alignment Search Tool (BLAST)</a> finds regions of local similarity between sequences.</p>
+<div class="section level1">
+<h1 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h1>
+<p>The <a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi" class="external-link">Basic Local Alignment Search Tool (BLAST)</a> finds regions of local similarity between sequences.</p>
 <table class="table">
 <colgroup>
 <col width="12%">
@@ -155,26 +130,26 @@ document.addEventListener("DOMContentLoaded", function() {
 </tr>
 </tbody>
 </table>
-<div id="experimental-design" class="section level2">
-<h2 class="hasAnchor">
-<a href="#experimental-design" class="anchor"></a>Experimental design</h2>
+<div class="section level2">
+<h2 id="experimental-design">Experimental design<a class="anchor" aria-label="anchor" href="#experimental-design"></a>
+</h2>
 <p>Typically, users want to specify here all information relevant for the analysis of their NGS study. This includes detailed descriptions of FASTQ files, experimental design, reference genome, gene annotations, etc.</p>
 </div>
 </div>
-<div id="workflow-environment" class="section level1">
-<h1 class="hasAnchor">
-<a href="#workflow-environment" class="anchor"></a>Workflow environment</h1>
-<div id="load-packages-and-sample-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#load-packages-and-sample-data" class="anchor"></a>Load packages and sample data</h2>
-<p>The <code>systemPipeR</code> package needs to be loaded to perform the analysis steps shown in this report <span class="citation">(H Backman and Girke 2016)</span>. The package allows users to run the entire analysis workflow interactively or with a single command while also generating the corresponding analysis report. For details see <code>systemPipeR's</code> main <a href="http://www.bioconductor.org/packages/devel/bioc/vignettes/systemPipeR/inst/doc/systemPipeR.html">vignette</a>.</p>
+<div class="section level1">
+<h1 id="workflow-environment">Workflow environment<a class="anchor" aria-label="anchor" href="#workflow-environment"></a>
+</h1>
+<div class="section level2">
+<h2 id="load-packages-and-sample-data">Load packages and sample data<a class="anchor" aria-label="anchor" href="#load-packages-and-sample-data"></a>
+</h2>
+<p>The <code>systemPipeR</code> package needs to be loaded to perform the analysis steps shown in this report <span class="citation">(H Backman and Girke 2016)</span>. The package allows users to run the entire analysis workflow interactively or with a single command while also generating the corresponding analysis report. For details see <code>systemPipeR's</code> main <a href="http://www.bioconductor.org/packages/devel/bioc/vignettes/systemPipeR/inst/doc/systemPipeR.html" class="external-link">vignette</a>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://systempipe.org/">systemPipeR</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/systemPipeR/SPblast">SPblast</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://systempipe.org/" class="external-link">systemPipeR</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/systemPipeR/SPblast" class="external-link">SPblast</a></span><span class="op">)</span></code></pre></div>
 </div>
-<div id="setup-and-requirements" class="section level2">
-<h2 class="hasAnchor">
-<a href="#setup-and-requirements" class="anchor"></a>Setup and Requirements</h2>
+<div class="section level2">
+<h2 id="setup-and-requirements">Setup and Requirements<a class="anchor" aria-label="anchor" href="#setup-and-requirements"></a>
+</h2>
 <p>To go through this tutorial, you need the following software installed:</p>
 <ul>
 <li>R/&gt;=4.0.3</li>
@@ -183,308 +158,167 @@ document.addEventListener("DOMContentLoaded", function() {
 </ul>
 <p>If you desire to build your pipeline with any different software, make sure to have the respective software installed and configured in your PATH. To make sure if the configuration is right, you always can test as follow:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/systemPipeR/man/tryCL.html">tryCL</a></span><span class="op">(</span>command <span class="op">=</span> <span class="st">"blastp"</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "All set up, proceed!"</code></pre>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/systemPipeR/man/tryCMD.html" class="external-link">tryCL</a></span><span class="op">(</span>command <span class="op">=</span> <span class="st">"blastp"</span><span class="op">)</span>  </code></pre></div>
+<pre><code><span class="co">## [1] "All set up, proceed!"</span></code></pre>
 </div>
-<div id="generate-workflow-environment" class="section level2">
-<h2 class="hasAnchor">
-<a href="#generate-workflow-environment" class="anchor"></a>Generate workflow environment</h2>
-<p><a href="http://bioconductor.org/packages/release/data/experiment/html/systemPipeRdata.html"><em>systemPipeRdata</em></a> package is a helper package to generate a fully populated <a href="http://bioconductor.org/packages/release/bioc/html/systemPipeR.html"><em>systemPipeR</em></a> workflow environment in the current working directory with a single command. All the instruction for generating the workflow template are provide in the <em>systemPipeRdata</em> vignette <a href="http://www.bioconductor.org/packages/devel/data/experiment/vignettes/systemPipeRdata/inst/doc/systemPipeRdata.html#1_Introduction">here</a>.</p>
+<div class="section level2">
+<h2 id="generate-workflow-environment">Generate workflow environment<a class="anchor" aria-label="anchor" href="#generate-workflow-environment"></a>
+</h2>
+<p><a href="http://bioconductor.org/packages/release/data/experiment/html/systemPipeRdata.html" class="external-link"><em>systemPipeRdata</em></a> package is a helper package to generate a fully populated <a href="http://bioconductor.org/packages/release/bioc/html/systemPipeR.html" class="external-link"><em>systemPipeR</em></a> workflow environment in the current working directory with a single command. All the instruction for generating the workflow template are provide in the <em>systemPipeRdata</em> vignette <a href="http://www.bioconductor.org/packages/devel/data/experiment/vignettes/systemPipeRdata/inst/doc/systemPipeRdata.html#1_Introduction" class="external-link">here</a>.</p>
 <p>After building and loading the workflow environment generated by <code>genWorkenvir</code> from <em>systemPipeRdata</em> all data inputs are stored in a <code>data/</code> directory and all analysis results will be written to a separate <code>results/</code> directory, while the <code>SPblast.Rmd</code> script and the <code>targets</code> file are expected to be located in the parent directory. The R session is expected to run from this parent directory. Additional parameter files are stored under <code>param/</code>.</p>
 <p>To work with real data, users want to organize their own data similarly and substitute all test data for their own data. To rerun an established workflow on new data, the initial <code>targets</code> file along with the corresponding FASTQ files are usually the only inputs the user needs to provide.</p>
-<p>For more details, please consult the documentation <a href="http://www.bioconductor.org/packages/release/bioc/vignettes/systemPipeR/inst/doc/systemPipeR.html">here</a>. More information about the <code>targets</code> files from <em>systemPipeR</em> can be found <a href="http://www.bioconductor.org/packages/release/bioc/vignettes/systemPipeR/inst/doc/systemPipeR.html#25_structure_of_targets_file">here</a>.</p>
+<p>For more details, please consult the documentation <a href="http://www.bioconductor.org/packages/release/bioc/vignettes/systemPipeR/inst/doc/systemPipeR.html" class="external-link">here</a>. More information about the <code>targets</code> files from <em>systemPipeR</em> can be found <a href="http://www.bioconductor.org/packages/release/bioc/vignettes/systemPipeR/inst/doc/systemPipeR.html#25_structure_of_targets_file" class="external-link">here</a>.</p>
 </div>
-<div id="get-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#get-data" class="anchor"></a>Get Data</h2>
+<div class="section level2">
+<h2 id="get-data">Get Data<a class="anchor" aria-label="anchor" href="#get-data"></a>
+</h2>
 <p>We are using for this tutorial mouse and human <a href="ftp://ftp.ncbi.nih.gov/refseq/">RefSeq</a> protein data sets from NCBI. First, we download the required dataset to <code>data/</code> folder and decompressing files, as follows:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span><span class="op">(</span><span class="st">"ftp://ftp.ncbi.nih.gov/refseq/M_musculus/mRNA_Prot/mouse.1.protein.faa.gz"</span>, 
-    destfile <span class="op">=</span> <span class="st">"data/mouse.1.protein.faa.gz"</span><span class="op">)</span>
-<span class="fu">R.utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/R.utils/man/compressFile.html">gunzip</a></span><span class="op">(</span><span class="st">"data/mouse.1.protein.faa.gz"</span><span class="op">)</span>
-<span class="co"># download.file('ftp://ftp.ncbi.nih.gov/refseq/M_musculus/mRNA_Prot/mouse.2.protein.faa.gz',</span>
-<span class="co"># destfile = 'data/mouse.2.protein.faa.gz')</span>
-<span class="co"># R.utils::gunzip('data/mouse.2.protein.faa.gz')</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span><span class="op">(</span><span class="st">"ftp://ftp.ncbi.nih.gov/refseq/H_sapiens/mRNA_Prot/human.1.protein.faa.gz"</span>, 
-    destfile <span class="op">=</span> <span class="st">"data/human.1.protein.faa.gz"</span><span class="op">)</span>
-<span class="fu">R.utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/R.utils/man/compressFile.html">gunzip</a></span><span class="op">(</span><span class="st">"data/human.1.protein.faa.gz"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="co">## add as step</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/download.file.html" class="external-link">download.file</a></span><span class="op">(</span><span class="st">"ftp://ftp.ncbi.nih.gov/refseq/M_musculus/mRNA_Prot/mouse.1.protein.faa.gz"</span>, 
+              destfile <span class="op">=</span> <span class="st">"data/mouse.1.protein.faa.gz"</span><span class="op">)</span>
+<span class="fu">R.utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/R.utils/man/compressFile.html" class="external-link">gunzip</a></span><span class="op">(</span><span class="st">"data/mouse.1.protein.faa.gz"</span><span class="op">)</span>
+<span class="co"># download.file("ftp://ftp.ncbi.nih.gov/refseq/M_musculus/mRNA_Prot/mouse.2.protein.faa.gz", </span>
+<span class="co">#               destfile = "data/mouse.2.protein.faa.gz")</span>
+<span class="co"># R.utils::gunzip("data/mouse.2.protein.faa.gz")</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/download.file.html" class="external-link">download.file</a></span><span class="op">(</span><span class="st">"ftp://ftp.ncbi.nih.gov/refseq/H_sapiens/mRNA_Prot/human.1.protein.faa.gz"</span>,
+              destfile <span class="op">=</span> <span class="st">"data/human.1.protein.faa.gz"</span><span class="op">)</span>
+<span class="fu">R.utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/R.utils/man/compressFile.html" class="external-link">gunzip</a></span><span class="op">(</span><span class="st">"data/human.1.protein.faa.gz"</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://bioconductor.org/packages/Biostrings">Biostrings</a></span><span class="op">)</span>
-<span class="va">mouse.path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"data/mouse.1.protein.faa"</span>, 
-    package <span class="op">=</span> <span class="st">"SPblast"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://bioconductor.org/packages/Biostrings" class="external-link">Biostrings</a></span><span class="op">)</span>
+<span class="va">mouse.path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"data/mouse.1.protein.faa"</span>, package<span class="op">=</span><span class="st">"SPblast"</span><span class="op">)</span>
 <span class="va">mouse.path</span> <span class="op">&lt;-</span> <span class="st">"data/mouse.1.protein.faa"</span>
-<span class="va">select</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Biostrings/man/XStringSet-io.html">readAAStringSet</a></span><span class="op">(</span><span class="va">mouse.path</span><span class="op">)</span>
+<span class="va">select</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Biostrings/man/XStringSet-io.html" class="external-link">readAAStringSet</a></span><span class="op">(</span><span class="va">mouse.path</span><span class="op">)</span>
 <span class="va">select</span> <span class="op">&lt;-</span> <span class="va">select</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span>
-<span class="fu"><a href="https://rdrr.io/pkg/Biostrings/man/XStringSet-io.html">writeXStringSet</a></span><span class="op">(</span><span class="va">select</span>, <span class="st">"data/mouse_select.fasta"</span>, format <span class="op">=</span> <span class="st">"fasta"</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/Biostrings/man/XStringSet-io.html" class="external-link">writeXStringSet</a></span><span class="op">(</span><span class="va">select</span>, <span class="st">"data/mouse_select.fasta"</span>, format<span class="op">=</span><span class="st">"fasta"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="targets" class="section level2">
-<h2 class="hasAnchor">
-<a href="#targets" class="anchor"></a>Targets</h2>
-</div>
-<div id="create-workflow-from-command-line" class="section level2">
-<h2 class="hasAnchor">
-<a href="#create-workflow-from-command-line" class="anchor"></a>Create workflow from command line</h2>
+<div class="section level2">
+<h2 id="project-initialization">Project initialization<a class="anchor" aria-label="anchor" href="#project-initialization"></a>
+</h2>
+<p>To create a Workflow within <em><code>systemPipeR</code></em>, we can start by defining an empty container and checking the directory structure:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># makeblastdb -in ./data/&lt;dataset&gt;.faa -out</span>
-<span class="co"># ./data/&lt;dataset&gt;.faa -dbtype prot -hash_index -parse_seqids</span>
-
-<span class="va">baseCommand</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>baseCommand <span class="op">=</span> <span class="st">"makeblastdb"</span><span class="op">)</span>
-<span class="va">inputs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>input_file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"File"</span>, preF <span class="op">=</span> <span class="st">"-in"</span>, 
-    yml <span class="op">=</span> <span class="st">"_INPUT_FASTA_"</span><span class="op">)</span>, database_name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"string"</span>, 
-    preF <span class="op">=</span> <span class="st">"-out"</span>, yml <span class="op">=</span> <span class="st">"_DATABASE_NAME_"</span><span class="op">)</span>, molecule_type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"string"</span>, 
-    preF <span class="op">=</span> <span class="st">"-dbtype"</span>, yml <span class="op">=</span> <span class="st">"_DBTYPE_"</span><span class="op">)</span><span class="op">)</span>
-<span class="va">arguments</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>hash_index <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>preF <span class="op">=</span> <span class="st">"-hash_index"</span><span class="op">)</span>, parse_seqids <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>preF <span class="op">=</span> <span class="st">"-parse_seqids"</span><span class="op">)</span><span class="op">)</span>
-<span class="va">outputs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>out.phd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"File"</span>, <span class="st">"$(inputs.results_path)/$(inputs.database_name.basename).phd"</span><span class="op">)</span>, 
-    out.phi <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"File"</span>, <span class="st">"$(inputs.results_path)/$(inputs.database_name.basename).phd"</span><span class="op">)</span>, 
-    out.phr <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"File"</span>, <span class="st">"$(inputs.results_path)/$(inputs.database_name.basename).phr"</span><span class="op">)</span>, 
-    out.pin <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"File"</span>, <span class="st">"$(inputs.results_path)/$(inputs.database_name.basename).pin"</span><span class="op">)</span>, 
-    out.pog <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"File"</span>, <span class="st">"$(inputs.results_path)/$(inputs.database_name.basename).pog"</span><span class="op">)</span>, 
-    out.psd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"File"</span>, <span class="st">"$(inputs.results_path)/$(inputs.database_name.basename).psd"</span><span class="op">)</span>, 
-    out.psi <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"File"</span>, <span class="st">"$(inputs.results_path)/$(inputs.database_name.basename).psi"</span><span class="op">)</span>, 
-    out.psq <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"File"</span>, <span class="st">"$(inputs.results_path)/$(inputs.database_name.basename).psq"</span><span class="op">)</span><span class="op">)</span>
-<span class="va">commandLine</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>baseCommand <span class="op">=</span> <span class="va">baseCommand</span>, arguments <span class="op">=</span> <span class="va">arguments</span>, 
-    inputs <span class="op">=</span> <span class="va">inputs</span>, outputs <span class="op">=</span> <span class="va">outputs</span><span class="op">)</span>
-
-
-<span class="co">## Create a SYSargs2 object and populate all the command-line</span>
-<span class="va">WF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/systemPipeR/man/createWF.html">createWF</a></span><span class="op">(</span>targets <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">commandLine</span>, results_path <span class="op">=</span> <span class="st">"./data"</span>, 
-    module_load <span class="op">=</span> <span class="st">"ncbi-blast"</span>, file <span class="op">=</span> <span class="st">"default"</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span>, 
-    cwlVersion <span class="op">=</span> <span class="st">"v1.0"</span><span class="op">)</span>
-
-<span class="va">param</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>input_file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>class <span class="op">=</span> <span class="st">"File"</span>, path <span class="op">=</span> <span class="st">"./data/human.1.protein.faa"</span><span class="op">)</span>, 
-    database_name <span class="op">=</span> <span class="st">"./data/human.1.protein.faa"</span>, molecule_type <span class="op">=</span> <span class="st">"prot"</span><span class="op">)</span>
-<span class="va">WF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/systemPipeR/man/config.param.html">config.param</a></span><span class="op">(</span>input_file <span class="op">=</span> <span class="va">WF</span>, <span class="va">param</span>, file <span class="op">=</span> <span class="st">"default"</span><span class="op">)</span>
-
-<span class="va">WF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/systemPipeR/man/renderWF.html">renderWF</a></span><span class="op">(</span><span class="va">WF</span>, inputvars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>input_file <span class="op">=</span> <span class="st">"./data/mouse.1.protein.faa"</span>, 
-    database_name <span class="op">=</span> <span class="st">"./data/mouse.1.protein.faa"</span>, molecule_type <span class="op">=</span> <span class="st">"prot"</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/systemPipeR/man/sysargs2-methods.html">cmdlist</a></span><span class="op">(</span><span class="va">WF</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/systemPipeR/man/sysargs2-methods.html">output</a></span><span class="op">(</span><span class="va">WF</span><span class="op">)</span>
-
-<span class="co"># blastp -query ./data/&lt;myseq&gt;.fasta -db ./data/&lt;dataset&gt;.faa</span>
-<span class="co"># -outfmt 0 -evalue 1e-6 -out &lt;blastp.out&gt;</span>
-
-<span class="va">baseCommand</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>baseCommand <span class="op">=</span> <span class="st">"blastp"</span><span class="op">)</span>
-<span class="va">inputs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>query <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"File"</span>, preF <span class="op">=</span> <span class="st">"-query"</span>, yml <span class="op">=</span> <span class="st">"_INPUT_FASTA_"</span><span class="op">)</span>, 
-    database_name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"File"</span>, preF <span class="op">=</span> <span class="st">"-db"</span>, yml <span class="op">=</span> <span class="st">"_DATABASE_NAME_"</span><span class="op">)</span>, 
-    evalue <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"int"</span>, preF <span class="op">=</span> <span class="st">"-evalue"</span>, yml <span class="op">=</span> <span class="st">"_evalue_"</span><span class="op">)</span>, 
-    outfmt <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"int"</span>, preF <span class="op">=</span> <span class="st">"-outfmt"</span>, yml <span class="op">=</span> <span class="st">"_outfmt_"</span><span class="op">)</span>, 
-    out <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"File"</span>, preF <span class="op">=</span> <span class="st">"-out"</span>, yml <span class="op">=</span> <span class="st">"_OUTPUT_"</span><span class="op">)</span><span class="op">)</span>
-<span class="va">outputs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>out <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"File"</span>, <span class="st">"$(inputs.results_path)/$(inputs.out)"</span><span class="op">)</span><span class="op">)</span>
-<span class="va">commandLine</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>baseCommand <span class="op">=</span> <span class="va">baseCommand</span>, inputs <span class="op">=</span> <span class="va">inputs</span>, 
-    outputs <span class="op">=</span> <span class="va">outputs</span><span class="op">)</span>
-
-<span class="co">## Create a SYSargs2 object and populate all the command-line</span>
-<span class="va">WF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/systemPipeR/man/createWF.html">createWF</a></span><span class="op">(</span>targets <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">commandLine</span>, results_path <span class="op">=</span> <span class="st">"./results"</span>, 
-    module_load <span class="op">=</span> <span class="st">"ncbi-blast"</span>, file <span class="op">=</span> <span class="st">"default"</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span>, 
-    cwlVersion <span class="op">=</span> <span class="st">"v1.0"</span><span class="op">)</span>
-<span class="va">param</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>query <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>class <span class="op">=</span> <span class="st">"File"</span>, path <span class="op">=</span> <span class="st">"./data/mouse_select.fasta"</span><span class="op">)</span>, 
-    database_name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>class <span class="op">=</span> <span class="st">"File"</span>, path <span class="op">=</span> <span class="st">"./data/human.1.protein.faa"</span><span class="op">)</span>, 
-    evalue <span class="op">=</span> <span class="fl">1e-06</span>, outfmt <span class="op">=</span> <span class="fl">0L</span>, out <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>class <span class="op">=</span> <span class="st">"File"</span>, path <span class="op">=</span> <span class="st">"blastp.out"</span><span class="op">)</span><span class="op">)</span>
-<span class="va">WF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/systemPipeR/man/config.param.html">config.param</a></span><span class="op">(</span>input_file <span class="op">=</span> <span class="va">WF</span>, <span class="va">param</span>, file <span class="op">=</span> <span class="st">"default"</span><span class="op">)</span>
-
-<span class="va">WF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/systemPipeR/man/renderWF.html">renderWF</a></span><span class="op">(</span><span class="va">WF</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/systemPipeR/man/sysargs2-methods.html">cmdlist</a></span><span class="op">(</span><span class="va">WF</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/systemPipeR/man/sysargs2-methods.html">output</a></span><span class="op">(</span><span class="va">WF</span><span class="op">)</span>
-
-<span class="co"># blastp -query ./data/&lt;myseq&gt;.fasta -db ./data/&lt;dataset&gt;.faa</span>
-<span class="co"># -outfmt 6 -evalue 1e-6 -out &lt;blastp.tab&gt;</span>
-<span class="va">WF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/systemPipeR/man/loadWorkflow.html">loadWF</a></span><span class="op">(</span>targets <span class="op">=</span> <span class="cn">NULL</span>, wf_file <span class="op">=</span> <span class="st">"blastp.cwl"</span>, input_file <span class="op">=</span> <span class="st">"blastp.yml"</span>, 
-    dir_path <span class="op">=</span> <span class="st">"param/cwl/blastp/"</span><span class="op">)</span>
-<span class="va">param</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>query <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>class <span class="op">=</span> <span class="st">"File"</span>, path <span class="op">=</span> <span class="st">"./data/mouse_select.fasta"</span><span class="op">)</span>, 
-    database_name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>class <span class="op">=</span> <span class="st">"File"</span>, path <span class="op">=</span> <span class="st">"./data/human.1.protein.faa"</span><span class="op">)</span>, 
-    evalue <span class="op">=</span> <span class="st">"1e-6"</span>, outfmt <span class="op">=</span> <span class="fl">6L</span>, out <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>class <span class="op">=</span> <span class="st">"File"</span>, 
-        path <span class="op">=</span> <span class="st">"results/blastp.tab"</span><span class="op">)</span><span class="op">)</span>
-<span class="va">WF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/systemPipeR/man/config.param.html">config.param</a></span><span class="op">(</span>input_file <span class="op">=</span> <span class="va">WF</span>, <span class="va">param</span>, file <span class="op">=</span> <span class="st">"default"</span><span class="op">)</span>
-
-<span class="va">WF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/systemPipeR/man/renderWF.html">renderWF</a></span><span class="op">(</span><span class="va">WF</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/systemPipeR/man/sysargs2-methods.html">cmdlist</a></span><span class="op">(</span><span class="va">WF</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/systemPipeR/man/sysargs2-methods.html">output</a></span><span class="op">(</span><span class="va">WF</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">sal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/systemPipeR/man/SPRproject.html" class="external-link">SPRproject</a></span><span class="op">(</span><span class="op">)</span> </code></pre></div>
+<pre><code><span class="co">## Creating directory: /home/dcassol/danielac@ucr.edu/projects/SP/SPR_org/Workflow/SPblast/SPblast/vignettes/data </span>
+<span class="co">## Creating directory: /home/dcassol/danielac@ucr.edu/projects/SP/SPR_org/Workflow/SPblast/SPblast/vignettes/param </span>
+<span class="co">## Creating directory: /home/dcassol/danielac@ucr.edu/projects/SP/SPR_org/Workflow/SPblast/SPblast/vignettes/results </span>
+<span class="co">## Creating directory '/home/dcassol/danielac@ucr.edu/projects/SP/SPR_org/Workflow/SPblast/SPblast/vignettes/.SPRproject'</span>
+<span class="co">## Creating file '/home/dcassol/danielac@ucr.edu/projects/SP/SPR_org/Workflow/SPblast/SPblast/vignettes/.SPRproject/SYSargsList.yml'</span></code></pre>
 </div>
-<div id="run-workflow" class="section level2">
-<h2 class="hasAnchor">
-<a href="#run-workflow" class="anchor"></a>Run workflow</h2>
-<p>Now open the R markdown script <code>SPblast.Rmd</code>in your R IDE (<em>e.g.</em> vim-r or RStudio) and run the workflow as outlined below.</p>
-<p>Here pair-end workflow example is provided. Please refer to the main vignette <code>systemPipeR.Rmd</code> for running the workflow with single-end data.</p>
-<p>If you are running on a single machine, use following code as an example to check if some tools used in this workflow are in your environment <strong>PATH</strong>. No warning message should be shown if all tools are installed.</p>
-</div>
-<div id="experiment-definition-provided-by-targets-file" class="section level2">
-<h2 class="hasAnchor">
-<a href="#experiment-definition-provided-by-targets-file" class="anchor"></a>Experiment definition provided by <code>targets</code> file</h2>
-<p>The <code>targets</code> file defines all FASTQ files and sample comparisons of the analysis workflow.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">targetspath</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"targetsPE.txt"</span>, package <span class="op">=</span> <span class="st">"systemPipeR"</span><span class="op">)</span>
-<span class="va">targets</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.delim</a></span><span class="op">(</span><span class="va">targetspath</span>, comment.char <span class="op">=</span> <span class="st">"#"</span><span class="op">)</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>
-<span class="va">targets</span></code></pre></div>
-<pre><code>##                      FileName1                   FileName2
-## 1  ./data/SRR446027_1.fastq.gz ./data/SRR446027_2.fastq.gz
-## 2  ./data/SRR446028_1.fastq.gz ./data/SRR446028_2.fastq.gz
-## 3  ./data/SRR446029_1.fastq.gz ./data/SRR446029_2.fastq.gz
-## 4  ./data/SRR446030_1.fastq.gz ./data/SRR446030_2.fastq.gz
-## 5  ./data/SRR446031_1.fastq.gz ./data/SRR446031_2.fastq.gz
-## 6  ./data/SRR446032_1.fastq.gz ./data/SRR446032_2.fastq.gz
-## 7  ./data/SRR446033_1.fastq.gz ./data/SRR446033_2.fastq.gz
-## 8  ./data/SRR446034_1.fastq.gz ./data/SRR446034_2.fastq.gz
-## 9  ./data/SRR446035_1.fastq.gz ./data/SRR446035_2.fastq.gz
-## 10 ./data/SRR446036_1.fastq.gz ./data/SRR446036_2.fastq.gz
-## 11 ./data/SRR446037_1.fastq.gz ./data/SRR446037_2.fastq.gz
-## 12 ./data/SRR446038_1.fastq.gz ./data/SRR446038_2.fastq.gz
-## 13 ./data/SRR446039_1.fastq.gz ./data/SRR446039_2.fastq.gz
-## 14 ./data/SRR446040_1.fastq.gz ./data/SRR446040_2.fastq.gz
-## 15 ./data/SRR446041_1.fastq.gz ./data/SRR446041_2.fastq.gz
-## 16 ./data/SRR446042_1.fastq.gz ./data/SRR446042_2.fastq.gz
-## 17 ./data/SRR446043_1.fastq.gz ./data/SRR446043_2.fastq.gz
-## 18 ./data/SRR446044_1.fastq.gz ./data/SRR446044_2.fastq.gz
-##    SampleName Factor
-## 1         M1A     M1
-## 2         M1B     M1
-## 3         A1A     A1
-## 4         A1B     A1
-## 5         V1A     V1
-## 6         V1B     V1
-## 7         M6A     M6
-## 8         M6B     M6
-## 9         A6A     A6
-## 10        A6B     A6
-## 11        V6A     V6
-## 12        V6B     V6
-## 13       M12A    M12
-## 14       M12B    M12
-## 15       A12A    A12
-## 16       A12B    A12
-## 17       V12A    V12
-## 18       V12B    V12</code></pre>
+<div class="section level2">
+<h2 id="create-workflow">Create workflow<a class="anchor" aria-label="anchor" href="#create-workflow"></a>
+</h2>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">appendStep</span><span class="op">(</span><span class="va">sal</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/systemPipeR/man/SYSargsList-class.html" class="external-link">SYSargsList</a></span><span class="op">(</span>step_name <span class="op">=</span> <span class="st">"makeblastdb"</span>, 
+                               targets <span class="op">=</span> <span class="cn">NULL</span>, dir <span class="op">=</span> <span class="cn">FALSE</span>,
+                               wf_file<span class="op">=</span><span class="st">"blast/makeblastdb.cwl"</span>, input_file<span class="op">=</span><span class="st">"blast/makeblastdb.yml"</span>,
+                               dir_path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/cwl"</span>, package<span class="op">=</span><span class="st">"systemPipeR"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dir_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"param/cwl/makeblastdb/"</span>, 
-    package <span class="op">=</span> <span class="st">"SPblast"</span><span class="op">)</span>
-<span class="va">WF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/systemPipeR/man/loadWorkflow.html">loadWF</a></span><span class="op">(</span>targets <span class="op">=</span> <span class="cn">NULL</span>, wf_file <span class="op">=</span> <span class="st">"makeblastdb.cwl"</span>, input_file <span class="op">=</span> <span class="st">"makeblastdb.yml"</span>, 
-    dir_path <span class="op">=</span> <span class="va">dir_path</span><span class="op">)</span>
-<span class="va">param</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>input_file <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>class <span class="op">=</span> <span class="st">"File"</span>, path <span class="op">=</span> <span class="st">"./data/human.1.protein.faa"</span><span class="op">)</span>, 
-    database_name <span class="op">=</span> <span class="st">"./data/human.1.protein.faa"</span>, molecule_type <span class="op">=</span> <span class="st">"prot"</span><span class="op">)</span>
-<span class="va">WF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/systemPipeR/man/config.param.html">config.param</a></span><span class="op">(</span>input_file <span class="op">=</span> <span class="va">WF</span>, <span class="va">param</span>, file <span class="op">=</span> <span class="st">"default"</span><span class="op">)</span>
-
-<span class="va">WF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/systemPipeR/man/renderWF.html">renderWF</a></span><span class="op">(</span><span class="va">WF</span>, inputvars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>input_file <span class="op">=</span> <span class="st">"./data/mouse.1.protein.faa"</span>, 
-    database_name <span class="op">=</span> <span class="st">"./data/mouse.1.protein.faa"</span>, molecule_type <span class="op">=</span> <span class="st">"prot"</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/systemPipeR/man/sysargs2-methods.html">cmdlist</a></span><span class="op">(</span><span class="va">WF</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/systemPipeR/man/sysargs2-methods.html">output</a></span><span class="op">(</span><span class="va">WF</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/systemPipeR/man/runCommandline.html">runCommandline</a></span><span class="op">(</span><span class="va">WF</span>, make_bam <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">appendStep</span><span class="op">(</span><span class="va">sal</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/systemPipeR/man/SYSargsList-class.html" class="external-link">SYSargsList</a></span><span class="op">(</span>step_name <span class="op">=</span> <span class="st">"blastp"</span>, 
+                               targets <span class="op">=</span> <span class="cn">NULL</span>, dir <span class="op">=</span> <span class="cn">TRUE</span>,
+                               wf_file<span class="op">=</span><span class="st">"blast/blastp.cwl"</span>, input_file<span class="op">=</span><span class="st">"blast/blastp.yml"</span>,
+                               dir_path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/cwl"</span>, package<span class="op">=</span><span class="st">"systemPipeR"</span><span class="op">)</span>, 
+                               dependency <span class="op">=</span> <span class="st">"makeblastdb"</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dir_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"param/cwl/blastp/"</span>, package <span class="op">=</span> <span class="st">"SPblast"</span><span class="op">)</span>
-<span class="va">WF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/systemPipeR/man/loadWorkflow.html">loadWF</a></span><span class="op">(</span>targets <span class="op">=</span> <span class="cn">NULL</span>, wf_file <span class="op">=</span> <span class="st">"blastp.cwl"</span>, input_file <span class="op">=</span> <span class="st">"blastp.yml"</span>, 
-    dir_path <span class="op">=</span> <span class="va">dir_path</span><span class="op">)</span>
-<span class="va">param</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>query <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>class <span class="op">=</span> <span class="st">"File"</span>, path <span class="op">=</span> <span class="st">"./data/mouse_select.fasta"</span><span class="op">)</span>, 
-    database_name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>class <span class="op">=</span> <span class="st">"File"</span>, path <span class="op">=</span> <span class="st">"./data/human.1.protein.faa"</span><span class="op">)</span>, 
-    evalue <span class="op">=</span> <span class="st">"1e-6"</span>, outfmt <span class="op">=</span> <span class="fl">6L</span>, out <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>class <span class="op">=</span> <span class="st">"File"</span>, 
-        path <span class="op">=</span> <span class="st">"results/blastp.tab"</span><span class="op">)</span><span class="op">)</span>
-<span class="va">WF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/systemPipeR/man/config.param.html">config.param</a></span><span class="op">(</span>input_file <span class="op">=</span> <span class="va">WF</span>, <span class="va">param</span>, file <span class="op">=</span> <span class="st">"default"</span><span class="op">)</span>
-
-<span class="va">WF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/systemPipeR/man/renderWF.html">renderWF</a></span><span class="op">(</span><span class="va">WF</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/systemPipeR/man/sysargs2-methods.html">cmdlist</a></span><span class="op">(</span><span class="va">WF</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/systemPipeR/man/sysargs2-methods.html">output</a></span><span class="op">(</span><span class="va">WF</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/systemPipeR/man/runCommandline.html">runCommandline</a></span><span class="op">(</span><span class="va">WF</span>, make_bam <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
-</div>
-</div>
-<div id="version-information" class="section level1">
-<h1 class="hasAnchor">
-<a href="#version-information" class="anchor"></a>Version Information</h1>
+<code class="sourceCode R"><span class="fu">appendStep</span><span class="op">(</span><span class="va">sal</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/systemPipeR/man/SYSargsList-class.html" class="external-link">SYSargsList</a></span><span class="op">(</span>step_name <span class="op">=</span> <span class="st">"top_hits"</span>, 
+                               targets <span class="op">=</span> <span class="cn">NULL</span>, dir <span class="op">=</span> <span class="cn">TRUE</span>,
+                               wf_file<span class="op">=</span><span class="st">"blast/cat.cwl"</span>, input_file<span class="op">=</span><span class="st">"blast/cat.yml"</span>,
+                               dir_path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/cwl"</span>, package<span class="op">=</span><span class="st">"systemPipeR"</span><span class="op">)</span>, 
+                               dependency <span class="op">=</span> <span class="st">"blastp"</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## R Under development (unstable) (2021-02-04 r79940)
-## Platform: x86_64-pc-linux-gnu (64-bit)
-## Running under: Ubuntu 20.04.2 LTS
-## 
-## Matrix products: default
-## BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0
-## LAPACK: /home/dcassol/src/R-devel/lib/libRlapack.so
-## 
-## locale:
-##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
-##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
-##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
-##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
-##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
-## 
-## attached base packages:
-## [1] stats4    parallel  stats     graphics  grDevices
-## [6] utils     datasets  methods   base     
-## 
-## other attached packages:
-##  [1] SPblast_0.99.0              systemPipeR_1.25.11        
-##  [3] ShortRead_1.49.2            GenomicAlignments_1.27.2   
-##  [5] SummarizedExperiment_1.21.3 Biobase_2.51.0             
-##  [7] MatrixGenerics_1.3.1        matrixStats_0.58.0         
-##  [9] BiocParallel_1.25.5         Rsamtools_2.7.2            
-## [11] Biostrings_2.59.2           XVector_0.31.1             
-## [13] GenomicRanges_1.43.4        GenomeInfoDb_1.27.11       
-## [15] IRanges_2.25.9              S4Vectors_0.29.15          
-## [17] BiocGenerics_0.37.2         BiocStyle_2.19.2           
-## 
-## loaded via a namespace (and not attached):
-##   [1] colorspace_2.0-0         rjson_0.2.20            
-##   [3] hwriter_1.3.2            ellipsis_0.3.1          
-##   [5] rprojroot_2.0.2          fs_1.5.0                
-##   [7] bit64_4.0.5              AnnotationDbi_1.53.1    
-##   [9] fansi_0.4.2              codetools_0.2-18        
-##  [11] cachem_1.0.4             knitr_1.32              
-##  [13] jsonlite_1.7.2           annotate_1.69.2         
-##  [15] dbplyr_2.1.1             png_0.1-7               
-##  [17] BiocManager_1.30.12      compiler_4.1.0          
-##  [19] httr_1.4.2               backports_1.2.1         
-##  [21] assertthat_0.2.1         Matrix_1.3-2            
-##  [23] fastmap_1.1.0            limma_3.47.12           
-##  [25] formatR_1.9              htmltools_0.5.1.1       
-##  [27] prettyunits_1.1.1        tools_4.1.0             
-##  [29] gtable_0.3.0             glue_1.4.2              
-##  [31] GenomeInfoDbData_1.2.4   dplyr_1.0.5             
-##  [33] rsvg_2.1.1               batchtools_0.9.15       
-##  [35] rappdirs_0.3.3           V8_3.4.0                
-##  [37] Rcpp_1.0.6               jquerylib_0.1.3         
-##  [39] pkgdown_1.6.1            vctrs_0.3.7             
-##  [41] rtracklayer_1.51.5       xfun_0.22               
-##  [43] stringr_1.4.0            lifecycle_1.0.0         
-##  [45] restfulr_0.0.13          XML_3.99-0.6            
-##  [47] edgeR_3.33.3             scales_1.1.1            
-##  [49] zlibbioc_1.37.0          BSgenome_1.59.2         
-##  [51] VariantAnnotation_1.37.1 ragg_1.1.2              
-##  [53] hms_1.0.0                RColorBrewer_1.1-2      
-##  [55] yaml_2.2.1               curl_4.3                
-##  [57] memoise_2.0.0            ggplot2_3.3.3           
-##  [59] sass_0.3.1               biomaRt_2.47.7          
-##  [61] latticeExtra_0.6-29      stringi_1.5.3           
-##  [63] RSQLite_2.2.7            BiocIO_1.1.2            
-##  [65] desc_1.3.0               checkmate_2.0.0         
-##  [67] GenomicFeatures_1.43.8   filelock_1.0.2          
-##  [69] DOT_0.1                  rlang_0.4.10            
-##  [71] pkgconfig_2.0.3          systemfonts_1.0.1       
-##  [73] bitops_1.0-6             evaluate_0.14           
-##  [75] lattice_0.20-41          purrr_0.3.4             
-##  [77] bit_4.0.4                tidyselect_1.1.0        
-##  [79] magrittr_2.0.1           bookdown_0.22           
-##  [81] R6_2.5.0                 generics_0.1.0          
-##  [83] base64url_1.4            DelayedArray_0.17.10    
-##  [85] DBI_1.1.1                pillar_1.6.0            
-##  [87] withr_2.4.2              KEGGREST_1.31.1         
-##  [89] RCurl_1.98-1.3           tibble_3.1.1            
-##  [91] crayon_1.4.1             utf8_1.2.1              
-##  [93] BiocFileCache_1.99.6     rmarkdown_2.7           
-##  [95] jpeg_0.1-8.1             progress_1.2.2          
-##  [97] locfit_1.5-9.4           grid_4.1.0              
-##  [99] data.table_1.14.0        blob_1.2.1              
-## [101] digest_0.6.27            xtable_1.8-4            
-## [103] brew_1.0-6               textshaping_0.3.3       
-## [105] munsell_0.5.0            bslib_0.2.4</code></pre>
+<code class="sourceCode R"><span class="fu">appendStep</span><span class="op">(</span><span class="va">sal</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/systemPipeR/man/SYSargsList-class.html" class="external-link">SYSargsList</a></span><span class="op">(</span>step_name <span class="op">=</span> <span class="st">"blastdbcmd"</span>, 
+                               targets <span class="op">=</span> <span class="cn">NULL</span>, dir <span class="op">=</span> <span class="cn">TRUE</span>,
+                               wf_file<span class="op">=</span><span class="st">"blast/blastdbcmd.cwl"</span>, input_file<span class="op">=</span><span class="st">"blast/blastdbcmd.yml"</span>,
+                               dir_path <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/cwl"</span>, package<span class="op">=</span><span class="st">"systemPipeR"</span><span class="op">)</span>, 
+                              dependency <span class="op">=</span> <span class="st">"top_hits"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="funding" class="section level1">
-<h1 class="hasAnchor">
-<a href="#funding" class="anchor"></a>Funding</h1>
+<div class="section level2">
+<h2 id="run-workflow">Run workflow<a class="anchor" aria-label="anchor" href="#run-workflow"></a>
+</h2>
+<p>For running the workflow, <code>runWF</code> function will execute all the command lines store in the workflow container.</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">sal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/systemPipeR/man/runWF.html" class="external-link">runWF</a></span><span class="op">(</span><span class="va">sal</span><span class="op">)</span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="workflow-visualization">Workflow Visualization<a class="anchor" aria-label="anchor" href="#workflow-visualization"></a>
+</h2>
+<p>systemPipeR workflows instances can be visualized with the <code>plotWF</code> function.</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/systemPipeR/man/plotWF.html" class="external-link">plotWF</a></span><span class="op">(</span><span class="va">sal</span><span class="op">)</span></code></pre></div>
+<div id="htmlwidget-5b3b14b31fffe3d4b271" style="width:700px;height:432.632880098888px;" class="plotwf html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5b3b14b31fffe3d4b271">{"x":{"dot":"digraph {\n    node[fontsize=20];\n    subgraph {\n        makeblastdb -> blastp -> top_hits -> blastdbcmd\n   }\n    \n    \n    makeblastdb[fillcolor=\"#d3d6eb\" style=\"filled, rounded\" label=<<b><font color=\"black\">makeblastdb<\/font><br><\/br><font color=\"#5cb85c\">0<\/font>/<font color=\"#f0ad4e\">0<\/font>/<font color=\"#d9534f\">0<\/font>/<font color=\"blue\">11<\/font><\/b>; <font color=\"black\">0s<\/font>> , shape=\"box\"  tooltip=\"step makeblastdb: 0 samples passed; 0 samples have warnings; 0 samples have errors; 11 samples in total; Start time: 2021-12-06 09:10:53; End time: 2021-12-06 09:10:53; Duration: 00:00:00\"]\n    blastp[fillcolor=\"#d3d6eb\" style=\"filled, rounded\" label=<<b><font color=\"black\">blastp<\/font><br><\/br><font color=\"#5cb85c\">0<\/font>/<font color=\"#f0ad4e\">0<\/font>/<font color=\"#d9534f\">0<\/font>/<font color=\"blue\">1<\/font><\/b>; <font color=\"black\">0s<\/font>> , shape=\"box\"  tooltip=\"step blastp: 0 samples passed; 0 samples have warnings; 0 samples have errors; 1 samples in total; Start time: 2021-12-06 09:10:53; End time: 2021-12-06 09:10:53; Duration: 00:00:00\"]\n    top_hits[fillcolor=\"#d3d6eb\" style=\"filled, rounded\" label=<<b><font color=\"black\">top_hits<\/font><br><\/br><font color=\"#5cb85c\">0<\/font>/<font color=\"#f0ad4e\">0<\/font>/<font color=\"#d9534f\">0<\/font>/<font color=\"blue\">1<\/font><\/b>; <font color=\"black\">0s<\/font>> , shape=\"box\"  tooltip=\"step top_hits: 0 samples passed; 0 samples have warnings; 0 samples have errors; 1 samples in total; Start time: 2021-12-06 09:10:53; End time: 2021-12-06 09:10:53; Duration: 00:00:00\"]\n    blastdbcmd[fillcolor=\"#d3d6eb\" style=\"filled, rounded\" label=<<b><font color=\"black\">blastdbcmd<\/font><br><\/br><font color=\"#5cb85c\">0<\/font>/<font color=\"#f0ad4e\">0<\/font>/<font color=\"#d9534f\">0<\/font>/<font color=\"blue\">1<\/font><\/b>; <font color=\"black\">0s<\/font>> , shape=\"box\"  tooltip=\"step blastdbcmd: 0 samples passed; 0 samples have warnings; 0 samples have errors; 1 samples in total; Start time: 2021-12-06 09:10:53; End time: 2021-12-06 09:10:53; Duration: 00:00:00\"]\n        subgraph cluster_legend {\n        rankdir=TB;\n        color=\"#eeeeee\";\n        style=filled;\n        ranksep =1;\n        label=\"Legends\";\n        fontsize = 30;\n        node [style=filled, fontsize=10];\n        legend_img-> step_state[color=\"#eeeeee\"];\n\n        legend_img[shape=none, image=\"plotwf_legend-src.png\", label = \" \", height=1, width=3, style=\"\"];\n\n        step_state[style=\"filled\", shape=\"box\" color=white, label =<\n            <table>\n            <tr><td><b>Step Colors<\/b><\/td><\/tr>\n            <tr><td><font color=\"black\">Pending steps<\/font>; <font color=\"#5cb85c\">Successful steps<\/font>; <font color=\"#d9534f\">Failed steps<\/font><\/td><\/tr>\n            <tr><td><b>Targets Files / Code Chunk <\/b><\/td><\/tr><tr><td><font color=\"#5cb85c\">0 (pass) <\/font> | <font color=\"#f0ad4e\">0 (warning) <\/font> | <font color=\"#d9534f\">0 (error) <\/font> | <font color=\"blue\">0 (total)<\/font>; Duration<\/td><\/tr><\/table>\n            >];\n\n    }\n\n}\n","plotid":"sprwf-21738654","responsive":true,"width":null,"height":null,"plot_method":"renderSVGElement","rmd":true,"msg":"","plot_ctr":true,"pan_zoom":false},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div class="section level1">
+<h1 id="version-information">Version Information<a class="anchor" aria-label="anchor" href="#version-information"></a>
+</h1>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## R Under development (unstable) (2021-10-25 r81105)</span>
+<span class="co">## Platform: x86_64-pc-linux-gnu (64-bit)</span>
+<span class="co">## Running under: Ubuntu 20.04.3 LTS</span>
+<span class="co">## </span>
+<span class="co">## Matrix products: default</span>
+<span class="co">## BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0</span>
+<span class="co">## LAPACK: /home/dcassol/src/R-devel/lib/libRlapack.so</span>
+<span class="co">## </span>
+<span class="co">## locale:</span>
+<span class="co">##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              </span>
+<span class="co">##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    </span>
+<span class="co">##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   </span>
+<span class="co">##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 </span>
+<span class="co">##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            </span>
+<span class="co">## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span>
+<span class="co">## </span>
+<span class="co">## attached base packages:</span>
+<span class="co">## [1] stats4    stats     graphics  grDevices utils     datasets  methods  </span>
+<span class="co">## [8] base     </span>
+<span class="co">## </span>
+<span class="co">## other attached packages:</span>
+<span class="co">##  [1] SPblast_0.99.0              systemPipeR_2.1.9          </span>
+<span class="co">##  [3] ShortRead_1.53.1            GenomicAlignments_1.31.2   </span>
+<span class="co">##  [5] SummarizedExperiment_1.25.2 Biobase_2.55.0             </span>
+<span class="co">##  [7] MatrixGenerics_1.7.0        matrixStats_0.61.0         </span>
+<span class="co">##  [9] BiocParallel_1.29.4         Rsamtools_2.11.0           </span>
+<span class="co">## [11] Biostrings_2.63.0           XVector_0.35.0             </span>
+<span class="co">## [13] GenomicRanges_1.47.5        GenomeInfoDb_1.31.1        </span>
+<span class="co">## [15] IRanges_2.29.1              S4Vectors_0.33.5           </span>
+<span class="co">## [17] BiocGenerics_0.41.2         BiocStyle_2.23.0           </span>
+<span class="co">## </span>
+<span class="co">## loaded via a namespace (and not attached):</span>
+<span class="co">##  [1] sass_0.4.0             jsonlite_1.7.2         bslib_0.3.1           </span>
+<span class="co">##  [4] assertthat_0.2.1       BiocManager_1.30.16    latticeExtra_0.6-29   </span>
+<span class="co">##  [7] GenomeInfoDbData_1.2.7 yaml_2.2.1             pillar_1.6.4          </span>
+<span class="co">## [10] lattice_0.20-45        glue_1.5.1             digest_0.6.29         </span>
+<span class="co">## [13] RColorBrewer_1.1-2     colorspace_2.0-2       htmltools_0.5.2       </span>
+<span class="co">## [16] Matrix_1.3-4           pkgconfig_2.0.3        bookdown_0.24         </span>
+<span class="co">## [19] zlibbioc_1.41.0        purrr_0.3.4            scales_1.1.1          </span>
+<span class="co">## [22] jpeg_0.1-9             tibble_3.1.6           generics_0.1.1        </span>
+<span class="co">## [25] ggplot2_3.3.5          ellipsis_0.3.2         cachem_1.0.6          </span>
+<span class="co">## [28] magrittr_2.0.1         crayon_1.4.2           memoise_2.0.1         </span>
+<span class="co">## [31] evaluate_0.14          fs_1.5.1               fansi_0.5.0           </span>
+<span class="co">## [34] hwriter_1.3.2          textshaping_0.3.6      tools_4.2.0           </span>
+<span class="co">## [37] lifecycle_1.0.1        stringr_1.4.0          munsell_0.5.0         </span>
+<span class="co">## [40] DelayedArray_0.21.2    compiler_4.2.0         pkgdown_2.0.1         </span>
+<span class="co">## [43] jquerylib_0.1.4        systemfonts_1.0.3      rlang_0.4.12          </span>
+<span class="co">## [46] grid_4.2.0             RCurl_1.98-1.5         htmlwidgets_1.5.4     </span>
+<span class="co">## [49] bitops_1.0-7           rmarkdown_2.11         gtable_0.3.0          </span>
+<span class="co">## [52] DBI_1.1.1              R6_2.5.1               knitr_1.36            </span>
+<span class="co">## [55] dplyr_1.0.7            fastmap_1.1.0          utf8_1.2.2            </span>
+<span class="co">## [58] rprojroot_2.0.2        ragg_1.2.1             desc_1.4.0            </span>
+<span class="co">## [61] stringi_1.7.6          parallel_4.2.0         vctrs_0.3.8           </span>
+<span class="co">## [64] png_0.1-7              tidyselect_1.1.1       xfun_0.28</span></code></pre>
+</div>
+<div class="section level1">
+<h1 id="funding">Funding<a class="anchor" aria-label="anchor" href="#funding"></a>
+</h1>
 <p>This project is funded by NSF award ABI-1661152.</p>
 </div>
-<div id="references" class="section level1 unnumbered">
-<h1 class="hasAnchor">
-<a href="#references" class="anchor"></a>References</h1>
+<div class="section level1 unnumbered">
+<h1 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h1>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-H_Backman2016-bt" class="csl-entry">
-H Backman, Tyler W, and Thomas Girke. 2016. <span>“<span class="nocase">systemPipeR: NGS workflow and report generation environment</span>.”</span> <em>BMC Bioinformatics</em> 17 (1): 388. <a href="https://doi.org/10.1186/s12859-016-1241-0">https://doi.org/10.1186/s12859-016-1241-0</a>.
+H Backman, Tyler W, and Thomas Girke. 2016. <span>“<span class="nocase">systemPipeR: NGS workflow and report generation environment</span>.”</span> <em>BMC Bioinformatics</em> 17 (1): 388. <a href="https://doi.org/10.1186/s12859-016-1241-0" class="external-link">https://doi.org/10.1186/s12859-016-1241-0</a>.
 </div>
 </div>
 </div>
@@ -501,11 +335,13 @@ H Backman, Tyler W, and Thomas Girke. 2016. <span>“<span class="nocase">system
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://www.dcassol.com/">Daniela Cassol</a>, <a href="http://girke.bioinformatics.ucr.edu/">Thomas Girke</a>.</p>
+  <p></p>
+<p>Developed by <a href="https://www.dcassol.com/" class="external-link">Daniela Cassol</a>, <a href="http://girke.bioinformatics.ucr.edu/" class="external-link">Thomas Girke</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -513,6 +349,8 @@ H Backman, Tyler W, and Thomas Girke. 2016. <span>“<span class="nocase">system
 
   
 
+
+  
 
   </body>
 </html>
