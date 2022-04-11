@@ -13,35 +13,13 @@ vignette: |
   %\VignetteEngine{knitr::rmarkdown}
 fontsize: 14pt
 bibliography: bibtex.bib
+editor_options: 
+  chunk_output_type: console
 ---
-
-<!--
-- Compile from command-line
-Rscript -e "rmarkdown::render('SPblast.Rmd', c('BiocStyle::html_document'), clean=TRUE)"
--->
-
-```{css, echo=FALSE}
-pre code {
-white-space: pre !important;
-overflow-x: scroll !important;
-word-break: keep-all !important;
-word-wrap: initial !important;
-}
-```
-
-```{r style, echo = FALSE, results = 'asis'}
-BiocStyle::markdown()
-options(width=60, max.print=1000)
-knitr::opts_chunk$set(
-    eval=as.logical(Sys.getenv("KNITR_EVAL", "TRUE")),
-    cache=as.logical(Sys.getenv("KNITR_CACHE", "TRUE")), 
-    tidy.opts=list(width.cutoff=60), tidy=TRUE)
-```
 
 ```{r setup, echo=FALSE, message=FALSE, warning=FALSE, eval=FALSE}
 suppressPackageStartupMessages({
     library(systemPipeR)
-    library(SPblast)
 })
 ```
 
@@ -118,6 +96,7 @@ protein data sets from NCBI.
 First, we download the required dataset to `data/` folder and decompressing files, as follows:
 
 ```{r download.data, eval=FALSE}
+## add as step
 download.file("ftp://ftp.ncbi.nih.gov/refseq/M_musculus/mRNA_Prot/mouse.1.protein.faa.gz", 
               destfile = "data/mouse.1.protein.faa.gz")
 R.utils::gunzip("data/mouse.1.protein.faa.gz")
@@ -139,140 +118,62 @@ select <- select[1:3]
 writeXStringSet(select, "data/mouse_select.fasta", format="fasta")
 ```
 
-## Targets
+## Project initialization
 
-## Create workflow from command line
+To create a Workflow within _`systemPipeR`_, we can start by defining an empty
+container and checking the directory structure:
 
-```{r, eval=FALSE}
-# makeblastdb -in ./data/<dataset>.faa -out ./data/<dataset>.faa -dbtype prot -hash_index -parse_seqids
+```{r SPRproject, eval=TRUE}
+sal <- SPRproject() 
+```
 
-baseCommand <- list(baseCommand="makeblastdb")
-inputs <- list(
-  "input_file"=list(type="File", preF="-in", yml="_INPUT_FASTA_"),
-  "database_name"= list(type="string", preF="-out", yml="_DATABASE_NAME_"),
-  "molecule_type"= list(type="string", preF="-dbtype", yml="_DBTYPE_")  )
-arguments <- list(
- "hash_index"=list(preF="-hash_index"),
-  "parse_seqids"=list(preF="-parse_seqids"))
-outputs <- list("out.phd"=list(type="File", "$(inputs.results_path)/$(inputs.database_name.basename).phd"),
-                "out.phi"=list(type="File", "$(inputs.results_path)/$(inputs.database_name.basename).phd"),
-                "out.phr"=list(type="File", "$(inputs.results_path)/$(inputs.database_name.basename).phr"),
-                "out.pin"=list(type="File", "$(inputs.results_path)/$(inputs.database_name.basename).pin"),
-                "out.pog"=list(type="File", "$(inputs.results_path)/$(inputs.database_name.basename).pog"),
-                "out.psd"=list(type="File", "$(inputs.results_path)/$(inputs.database_name.basename).psd"),
-                "out.psi"=list(type="File", "$(inputs.results_path)/$(inputs.database_name.basename).psi"),
-                "out.psq"=list(type="File", "$(inputs.results_path)/$(inputs.database_name.basename).psq")
-                )
-commandLine <- list(baseCommand=baseCommand, arguments=arguments, inputs=inputs, outputs=outputs)
+## Create workflow
 
+```{r, eval=TRUE, spr=TRUE}
+appendStep(sal) <- SYSargsList(step_name = "makeblastdb", 
+                               targets = NULL, dir = FALSE,
+                               wf_file="blast/makeblastdb.cwl", input_file="blast/makeblastdb.yml",
+                               dir_path = system.file("extdata/cwl", package="systemPipeR"))
+```
 
-## Create a SYSargs2 object and populate all the command-line
-WF <- createWF(targets=NULL, commandLine, results_path="./data", module_load="ncbi-blast",
-               file = "default", overwrite = TRUE, cwlVersion = "v1.0")
+```{r blastp, eval=TRUE, spr=TRUE}
+appendStep(sal) <- SYSargsList(step_name = "blastp", 
+                               targets = NULL, dir = TRUE,
+                               wf_file="blast/blastp.cwl", input_file="blast/blastp.yml",
+                               dir_path = system.file("extdata/cwl", package="systemPipeR"), 
+                               dependency = "makeblastdb")
+```
 
-param <- list(input_file=list(class="File", path="./data/human.1.protein.faa"), 
-              database_name="./data/human.1.protein.faa", 
-              molecule_type="prot")
-WF <- config.param(input_file=WF, param, file="default")
+```{r top_hits, eval=TRUE, spr=TRUE}
+appendStep(sal) <- SYSargsList(step_name = "top_hits", 
+                               targets = NULL, dir = TRUE,
+                               wf_file="blast/cat.cwl", input_file="blast/cat.yml",
+                               dir_path = system.file("extdata/cwl", package="systemPipeR"), 
+                               dependency = "blastp")
+```
 
-WF <- renderWF(WF, inputvars=c(input_file="./data/mouse.1.protein.faa", database_name="./data/mouse.1.protein.faa",
-                               molecule_type="prot"))
-cmdlist(WF)
-output(WF)
-
-# blastp -query ./data/<myseq>.fasta -db ./data/<dataset>.faa -outfmt 0 -evalue 1e-6 -out <blastp.out>
-
-baseCommand <- list(baseCommand="blastp")
-inputs <- list(
-  "query"=list(type="File", preF="-query", yml="_INPUT_FASTA_"),
-  "database_name"= list(type="File", preF="-db", yml="_DATABASE_NAME_"),
-  "evalue"=list(type="int", preF="-evalue", yml="_evalue_"),
-  "outfmt"= list(type="int", preF="-outfmt", yml="_outfmt_"),
-  "out"=list(type="File", preF="-out", yml="_OUTPUT_"))
-outputs <- list("out"=list(type="File", "$(inputs.results_path)/$(inputs.out)"))
-commandLine <- list(baseCommand=baseCommand, inputs=inputs, outputs=outputs)
-
-## Create a SYSargs2 object and populate all the command-line
-WF <- createWF(targets=NULL, commandLine, results_path="./results", module_load="ncbi-blast",
-               file = "default", overwrite = TRUE, cwlVersion = "v1.0")
-param <- list(query=list(class="File", path="./data/mouse_select.fasta"), 
-              database_name=list(class="File", path="./data/human.1.protein.faa"), 
-              evalue=1e-6,
-              outfmt=0L,
-              out=list(class="File", path="blastp.out"))
-WF <- config.param(input_file=WF, param, file="default")
-
-WF <- renderWF(WF)
-cmdlist(WF)
-output(WF)
-
-# blastp -query ./data/<myseq>.fasta -db ./data/<dataset>.faa -outfmt 6 -evalue 1e-6 -out <blastp.tab>
-WF <- loadWF(targets=NULL, wf_file="blastp.cwl", input_file="blastp.yml", dir_path="param/cwl/blastp/")
-param <- list(query=list(class="File", path="./data/mouse_select.fasta"), 
-              database_name=list(class="File", path="./data/human.1.protein.faa"), 
-              evalue="1e-6",
-              outfmt=6L,
-              out=list(class="File", path="results/blastp.tab"))
-WF <- config.param(input_file=WF, param, file="default")
-
-WF <- renderWF(WF)
-cmdlist(WF)
-output(WF)
+```{r blastdbcmd, eval=TRUE, spr=TRUE}
+appendStep(sal) <- SYSargsList(step_name = "blastdbcmd", 
+                               targets = NULL, dir = TRUE,
+                               wf_file="blast/blastdbcmd.cwl", input_file="blast/blastdbcmd.yml",
+                               dir_path = system.file("extdata/cwl", package="systemPipeR"), 
+                              dependency = "top_hits")
 ```
 
 ## Run workflow
 
-Now open the R markdown script `SPblast.Rmd`in your R IDE (_e.g._ vim-r or RStudio) and 
-run the workflow as outlined below. 
-
-Here pair-end workflow example is provided. Please refer to the main vignette 
-`systemPipeR.Rmd` for running the workflow with single-end data. 
-
-If you are running on a single machine, use following code as an example to check 
-if some tools used in this workflow are in your environment **PATH**. No warning 
-message should be shown if all tools are installed.
-
-## Experiment definition provided by `targets` file
-
-The `targets` file defines all FASTQ files and sample comparisons of the analysis workflow. 
-
-```{r load_targets, eval=TRUE}
-targetspath <- system.file("extdata", "targetsPE.txt", package="systemPipeR")
-targets <- read.delim(targetspath, comment.char = "#")[,1:4]
-targets
-```
+For running the workflow, `runWF` function will execute all the command lines store in the workflow container.
 
 ```{r, eval=FALSE}
-dir_path <- system.file("extdata", "param/cwl/makeblastdb/", package="SPblast")
-WF <- loadWF(targets=NULL, wf_file="makeblastdb.cwl", input_file="makeblastdb.yml",
-             dir_path=dir_path)
-param <- list(input_file=list(class="File", path="./data/human.1.protein.faa"), 
-              database_name="./data/human.1.protein.faa", 
-              molecule_type="prot")
-WF <- config.param(input_file=WF, param, file="default")
-
-WF <- renderWF(WF, inputvars=c(input_file="./data/mouse.1.protein.faa", database_name="./data/mouse.1.protein.faa",
-                               molecule_type="prot"))
-cmdlist(WF)
-output(WF)
-runCommandline(WF, make_bam = FALSE)
+sal <- runWF(sal)
 ```
 
+## Workflow Visualization
 
-```{r, eval=FALSE}
-dir_path <- system.file("extdata", "param/cwl/blastp/", package="SPblast")
-WF <- loadWF(targets=NULL, wf_file="blastp.cwl", input_file="blastp.yml", dir_path=dir_path)
-param <- list(query=list(class="File", path="./data/mouse_select.fasta"), 
-              database_name=list(class="File", path="./data/human.1.protein.faa"), 
-              evalue="1e-6",
-              outfmt=6L,
-              out=list(class="File", path="results/blastp.tab"))
-WF <- config.param(input_file=WF, param, file="default")
+systemPipeR workflows instances can be visualized with the `plotWF` function.
 
-WF <- renderWF(WF)
-cmdlist(WF)
-output(WF)
-runCommandline(WF, make_bam = FALSE)
+```{r, eval=TRUE}
+plotWF(sal)
 ```
 
 # Version Information

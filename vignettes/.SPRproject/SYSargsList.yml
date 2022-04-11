@@ -1,0 +1,513 @@
+stepsWF:
+  makeblastdb: |
+    targets: {}
+    targetsheader: []
+    modules:
+      module1: ncbi-blast
+    wf: []
+    clt:
+      makeblastdb.cwl:
+        cwlVersion: v1.0
+        class: CommandLineTool
+        arguments:
+        - prefix: -hash_index
+        - prefix: -parse_seqids
+        baseCommand: makeblastdb
+        inputs:
+          input_file:
+            type: File
+            inputBinding:
+              prefix: -in
+          database_name:
+            type: File
+            inputBinding:
+              prefix: -out
+          molecule_type:
+            type: string
+            inputBinding:
+              prefix: -dbtype
+        outputs:
+          out.pdb:
+            type: File
+            outputBinding:
+              glob: $(inputs.results_path)/$(inputs.database_name.basename).pdb
+          out.phd:
+            type: File
+            outputBinding:
+              glob: $(inputs.results_path)/$(inputs.database_name.basename).phd
+          out.phi:
+            type: File
+            outputBinding:
+              glob: $(inputs.results_path)/$(inputs.database_name.basename).phi
+          out.phr:
+            type: File
+            outputBinding:
+              glob: $(inputs.results_path)/$(inputs.database_name.basename).phr
+          out.pin:
+            type: File
+            outputBinding:
+              glob: $(inputs.results_path)/$(inputs.database_name.basename).pin
+          out.pog:
+            type: File
+            outputBinding:
+              glob: $(inputs.results_path)/$(inputs.database_name.basename).pog
+          out.pos:
+            type: File
+            outputBinding:
+              glob: $(inputs.results_path)/$(inputs.database_name.basename).pos
+          out.pot:
+            type: File
+            outputBinding:
+              glob: $(inputs.results_path)/$(inputs.database_name.basename).pot
+          out.psq:
+            type: File
+            outputBinding:
+              glob: $(inputs.results_path)/$(inputs.database_name.basename).psq
+          out.ptf:
+            type: File
+            outputBinding:
+              glob: $(inputs.results_path)/$(inputs.database_name.basename).ptf
+          out.pto:
+            type: File
+            outputBinding:
+              glob: $(inputs.results_path)/$(inputs.database_name.basename).pto
+    yamlinput:
+      input_file:
+        class: File
+        path: ./data/human.1.protein.faa
+      database_name:
+        class: File
+        path: ./data/human.1.protein.faa
+      molecule_type: prot
+      results_path:
+        class: Directory
+        path: ./data
+      ModulesToLoad:
+        module1: ncbi-blast
+    cmdlist:
+      defaultid:
+        makeblastdb: makeblastdb -hash_index  -parse_seqids  -in ./data/human.1.protein.faa
+          -out ./data/human.1.protein.faa -dbtype prot
+    input:
+      defaultid: []
+    output:
+      defaultid:
+        makeblastdb:
+        - ./data/human.1.protein.faa.pdb
+        - ./data/human.1.protein.faa.phd
+        - ./data/human.1.protein.faa.phi
+        - ./data/human.1.protein.faa.phr
+        - ./data/human.1.protein.faa.pin
+        - ./data/human.1.protein.faa.pog
+        - ./data/human.1.protein.faa.pos
+        - ./data/human.1.protein.faa.pot
+        - ./data/human.1.protein.faa.psq
+        - ./data/human.1.protein.faa.ptf
+        - ./data/human.1.protein.faa.pto
+    files:
+      cwl: blast/makeblastdb.cwl
+      yml: blast/makeblastdb.yml
+      dir_path: /home/dcassol/src/R-devel/library/systemPipeR/extdata/cwl
+      steps: makeblastdb
+      output_names:
+      - out.pdb
+      - out.phd
+      - out.phi
+      - out.phr
+      - out.pin
+      - out.pog
+      - out.pos
+      - out.pot
+      - out.psq
+      - out.ptf
+      - out.pto
+      targets: .na
+      id: SampleName
+    inputvars: []
+    cmdToCwl: []
+    status:
+      status.summary: Pending
+      status.completed:
+        Targets: defaultid
+        Total_Files: 11.0
+        Existing_Files: 0.0
+        Missing_Files: 11.0
+        makeblastdb: Pending
+      status.time:
+        Targets: defaultid
+        time_start: .na
+        time_end: .na
+    internal_outfiles:
+      defaultid:
+        makeblastdb:
+        - ./data/human.1.protein.faa.pdb
+        - ./data/human.1.protein.faa.phd
+        - ./data/human.1.protein.faa.phi
+        - ./data/human.1.protein.faa.phr
+        - ./data/human.1.protein.faa.pin
+        - ./data/human.1.protein.faa.pog
+        - ./data/human.1.protein.faa.pos
+        - ./data/human.1.protein.faa.pot
+        - ./data/human.1.protein.faa.psq
+        - ./data/human.1.protein.faa.ptf
+        - ./data/human.1.protein.faa.pto
+  blastp: |
+    targets: {}
+    targetsheader: []
+    modules:
+      module1: ncbi-blast
+    wf: []
+    clt:
+      blastp.cwl:
+        cwlVersion: v1.0
+        class: CommandLineTool
+        baseCommand: blastp
+        inputs:
+          query:
+            type: File
+            inputBinding:
+              prefix: -query
+          database_name:
+            type: File
+            inputBinding:
+              prefix: -db
+          evalue:
+            type: int
+            inputBinding:
+              prefix: -evalue
+          outfmt:
+            type: int
+            inputBinding:
+              prefix: -outfmt
+          out:
+            type: File
+            inputBinding:
+              prefix: -out
+        outputs:
+          out:
+            type: File
+            outputBinding:
+              glob: $(inputs.out)
+    yamlinput:
+      query:
+        class: File
+        path: ./data/mouse_select.fasta
+      database_name:
+        class: File
+        path: ./data/human.1.protein.faa
+      evalue: 1e-6
+      outfmt: 6
+      out:
+        class: File
+        path: ./results/blastp.out
+      results_path:
+        class: Directory
+        path: ./results
+      ModulesToLoad:
+        module1: ncbi-blast
+    cmdlist:
+      defaultid:
+        blastp: blastp -query ./data/mouse_select.fasta -db ./data/human.1.protein.faa
+          -evalue 1e-6 -outfmt 6 -out ./results/blastp.out
+    input:
+      defaultid: []
+    output:
+      defaultid:
+        blastp: ./results/blastp.out
+    files:
+      cwl: blast/blastp.cwl
+      yml: blast/blastp.yml
+      dir_path: /home/dcassol/src/R-devel/library/systemPipeR/extdata/cwl
+      steps: blastp
+      output_names: out
+      targets: .na
+      id: SampleName
+    inputvars: []
+    cmdToCwl: []
+    status:
+      status.summary: Pending
+      status.completed:
+        Targets: defaultid
+        Total_Files: 1.0
+        Existing_Files: 0.0
+        Missing_Files: 1.0
+        blastp: Pending
+      status.time:
+        Targets: defaultid
+        time_start: .na
+        time_end: .na
+    internal_outfiles:
+      defaultid:
+        blastp: ./results/blastp.out
+  top_hits: |
+    targets: {}
+    targetsheader: []
+    modules:
+      module1: ncbi-blast
+    wf: []
+    clt:
+      cat.cwl:
+        cwlVersion: v1.0
+        class: CommandLineTool
+        baseCommand: cat
+        arguments:
+        - prefix: ~
+          valueFrom: $(inputs.out) | head -n 10 | cut -f 2
+        inputs:
+          out:
+            type: File
+        results_path:
+          out:
+            type: Directory
+        stdout: $(input.results_path.basename)/top_hits
+        outputs:
+          top_hits:
+            type: stdout
+    yamlinput:
+      out:
+        class: File
+        path: ./results/blastp/blastp.out
+      results_path:
+        class: Directory
+        path: ./results
+      ModulesToLoad:
+        module1: ncbi-blast
+    cmdlist:
+      defaultid:
+        cat: cat ./results/blastp/blastp.out/ | head -n 10 | cut -f 2  > results/top_hits
+    input:
+      defaultid: []
+    output:
+      defaultid:
+        cat: results/top_hits
+    files:
+      cwl: blast/cat.cwl
+      yml: blast/cat.yml
+      dir_path: /home/dcassol/src/R-devel/library/systemPipeR/extdata/cwl
+      steps: cat
+      output_names: top_hits
+      targets: .na
+      id: SampleName
+    inputvars: []
+    cmdToCwl: []
+    status:
+      status.summary: Pending
+      status.completed:
+        Targets: defaultid
+        Total_Files: 1.0
+        Existing_Files: 0.0
+        Missing_Files: 1.0
+        cat: Pending
+      status.time:
+        Targets: defaultid
+        time_start: .na
+        time_end: .na
+    internal_outfiles:
+      defaultid:
+        cat: results/top_hits
+  blastdbcmd: |
+    targets: {}
+    targetsheader: []
+    modules:
+      module1: ncbi-blast
+    wf: []
+    clt:
+      blastdbcmd.cwl:
+        cwlVersion: v1.0
+        class: CommandLineTool
+        baseCommand: blastdbcmd
+        arguments:
+        - prefix: ~
+          valueFrom: -db  $(inputs.database_name) -entry_batch $(inputs.entry_batch) |
+            head -n 10
+        inputs:
+          database_name:
+            type: File
+          entry_batch:
+            type: File
+        stdout: $(input.results_path.basename)/sequences_top_hits.fasta
+        outputs:
+          blastdbcmd:
+            type: stdout
+    yamlinput:
+      database_name:
+        class: File
+        path: ./data/human.1.protein.faa
+      entry_batch:
+        class: File
+        path: ./results/top_hits
+      results_path:
+        class: Directory
+        path: ./results
+      ModulesToLoad:
+        module1: ncbi-blast
+    cmdlist:
+      defaultid:
+        blastdbcmd: blastdbcmd -db  $(inputs.database_name) -entry_batch $(inputs.entry_batch)
+          | head -n 10  > results/sequences_top_hits.fasta
+    input:
+      defaultid: []
+    output:
+      defaultid:
+        blastdbcmd: results/sequences_top_hits.fasta
+    files:
+      cwl: blast/blastdbcmd.cwl
+      yml: blast/blastdbcmd.yml
+      dir_path: /home/dcassol/src/R-devel/library/systemPipeR/extdata/cwl
+      steps: blastdbcmd
+      output_names: blastdbcmd
+      targets: .na
+      id: SampleName
+    inputvars: []
+    cmdToCwl: []
+    status:
+      status.summary: Pending
+      status.completed:
+        Targets: defaultid
+        Total_Files: 1.0
+        Existing_Files: 0.0
+        Missing_Files: 1.0
+        blastdbcmd: Pending
+      status.time:
+        Targets: defaultid
+        time_start: .na
+        time_end: .na
+    internal_outfiles:
+      defaultid:
+        blastdbcmd: results/sequences_top_hits.fasta
+statusWF:
+  makeblastdb: |
+    makeblastdb:
+      status.summary: Pending
+      status.completed:
+        Targets: defaultid
+        Total_Files: 11.0
+        Existing_Files: 0.0
+        Missing_Files: 11.0
+        makeblastdb: Pending
+      status.time:
+        Targets: defaultid
+        time_start: .na
+        time_end: .na
+  blastp: |
+    blastp:
+      status.summary: Pending
+      status.completed:
+        Targets: defaultid
+        Total_Files: 1.0
+        Existing_Files: 0.0
+        Missing_Files: 1.0
+        blastp: Pending
+      status.time:
+        Targets: defaultid
+        time_start: .na
+        time_end: .na
+  top_hits: |
+    top_hits:
+      status.summary: Pending
+      status.completed:
+        Targets: defaultid
+        Total_Files: 1.0
+        Existing_Files: 0.0
+        Missing_Files: 1.0
+        cat: Pending
+      status.time:
+        Targets: defaultid
+        time_start: .na
+        time_end: .na
+  blastdbcmd: |
+    blastdbcmd:
+      status.summary: Pending
+      status.completed:
+        Targets: defaultid
+        Total_Files: 1.0
+        Existing_Files: 0.0
+        Missing_Files: 1.0
+        blastdbcmd: Pending
+      status.time:
+        Targets: defaultid
+        time_start: .na
+        time_end: .na
+targetsWF:
+  makeblastdb: |
+    {}
+  blastp: |
+    {}
+  top_hits: |
+    {}
+  blastdbcmd: |
+    {}
+outfiles:
+  makeblastdb: |
+    out.pdb: ./data/human.1.protein.faa.pdb
+    out.phd: ./data/human.1.protein.faa.phd
+    out.phi: ./data/human.1.protein.faa.phi
+    out.phr: ./data/human.1.protein.faa.phr
+    out.pin: ./data/human.1.protein.faa.pin
+    out.pog: ./data/human.1.protein.faa.pog
+    out.pos: ./data/human.1.protein.faa.pos
+    out.pot: ./data/human.1.protein.faa.pot
+    out.psq: ./data/human.1.protein.faa.psq
+    out.ptf: ./data/human.1.protein.faa.ptf
+    out.pto: ./data/human.1.protein.faa.pto
+  blastp: |
+    out: ./results/blastp.out
+  top_hits: |
+    top_hits: results/top_hits
+  blastdbcmd: |
+    blastdbcmd: results/sequences_top_hits.fasta
+SE:
+  makeblastdb: |
+    dir.path: /home/dcassol/danielac@ucr.edu/projects/SP/SPR_org/Workflow/SPblast/vignettes/.SPRproject/SE
+    dir.name: makeblastdb
+  blastp: |
+    dir.path: /home/dcassol/danielac@ucr.edu/projects/SP/SPR_org/Workflow/SPblast/vignettes/.SPRproject/SE
+    dir.name: blastp
+  top_hits: |
+    dir.path: /home/dcassol/danielac@ucr.edu/projects/SP/SPR_org/Workflow/SPblast/vignettes/.SPRproject/SE
+    dir.name: top_hits
+  blastdbcmd: |
+    dir.path: /home/dcassol/danielac@ucr.edu/projects/SP/SPR_org/Workflow/SPblast/vignettes/.SPRproject/SE
+    dir.name: blastdbcmd
+dependency:
+  makeblastdb: |
+    makeblastdb: .na
+  blastp: |
+    blastp: makeblastdb
+  top_hits: |
+    top_hits: blastp
+  blastdbcmd: |
+    blastdbcmd: top_hits
+targets_connection:
+  makeblastdb: |
+    makeblastdb: ~
+  blastp: |
+    blastp: ~
+  top_hits: |
+    top_hits: ~
+  blastdbcmd: |
+    blastdbcmd: ~
+projectInfo: |
+  project: /home/dcassol/danielac@ucr.edu/projects/SP/SPR_org/Workflow/SPblast/vignettes
+  data: data
+  param: param
+  results: results
+  logsDir: .SPRproject
+  sysargslist: .SPRproject/SYSargsList.yml
+runInfo: |
+  makeblastdb:
+    directory: no
+    run_step: mandatory
+    run_session: management
+  blastp:
+    directory: yes
+    run_step: mandatory
+    run_session: management
+  top_hits:
+    directory: yes
+    run_step: mandatory
+    run_session: management
+  blastdbcmd:
+    directory: yes
+    run_step: mandatory
+    run_session: management
