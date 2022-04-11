@@ -129,14 +129,14 @@ sal <- SPRproject()
 
 ## Create workflow
 
-```{r, eval=TRUE, spr='sysargs'}
+```{r, eval=TRUE, spr=TRUE}
 appendStep(sal) <- SYSargsList(step_name = "makeblastdb", 
                                targets = NULL, dir = FALSE,
                                wf_file="blast/makeblastdb.cwl", input_file="blast/makeblastdb.yml",
                                dir_path = system.file("extdata/cwl", package="systemPipeR"))
 ```
 
-```{r blastp, eval=TRUE, spr='sysargs'}
+```{r blastp, eval=TRUE, spr=TRUE}
 appendStep(sal) <- SYSargsList(step_name = "blastp", 
                                targets = NULL, dir = TRUE,
                                wf_file="blast/blastp.cwl", input_file="blast/blastp.yml",
@@ -144,7 +144,7 @@ appendStep(sal) <- SYSargsList(step_name = "blastp",
                                dependency = "makeblastdb")
 ```
 
-```{r top_hits, eval=TRUE, spr='sysargs'}
+```{r top_hits, eval=TRUE, spr=TRUE}
 appendStep(sal) <- SYSargsList(step_name = "top_hits", 
                                targets = NULL, dir = TRUE,
                                wf_file="blast/cat.cwl", input_file="blast/cat.yml",
@@ -152,7 +152,7 @@ appendStep(sal) <- SYSargsList(step_name = "top_hits",
                                dependency = "blastp")
 ```
 
-```{r blastdbcmd, eval=TRUE, spr='sysargs'}
+```{r blastdbcmd, eval=TRUE, spr=TRUE}
 appendStep(sal) <- SYSargsList(step_name = "blastdbcmd", 
                                targets = NULL, dir = TRUE,
                                wf_file="blast/blastdbcmd.cwl", input_file="blast/blastdbcmd.yml",
